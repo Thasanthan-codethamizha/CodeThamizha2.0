@@ -18,9 +18,6 @@ class CustomUserAdmin(UserAdmin):
             (('User'), {
                 'fields': ('username', 'password', 'user_type', 'email', 'phone_number', 'full_name', 'points')
             }),
-            (('Following'), {
-                'fields': ('follows',)
-            }),
             (('Permissions'), {
                 'fields': ('is_active', 'is_staff', 'is_superuser')
             }),

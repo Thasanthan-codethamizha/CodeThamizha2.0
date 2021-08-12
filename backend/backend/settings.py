@@ -22,7 +22,7 @@ ALLOWED_HOSTS = []
 INSTALLED_APPS = [
     'users',
     'tags',
-    'posts',
+    'post',
     'event',
     'django.contrib.admin',
     'django.contrib.auth',
