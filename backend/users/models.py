@@ -23,10 +23,15 @@ class CustomUser(AbstractUser):
     phone_number = models.CharField(max_length=15, blank=True, null=True)
     full_name = models.CharField(max_length=120, blank=True, null=True)
     points = models.IntegerField(blank=True, null=True)
-    follows = models.ManyToManyField('CustomUser')
+
     REQUIRED_FIELDS = []
 
     objects = CustomUserManager()
 
     def __str__(self):
         return self.username
+
+
+class Following(models.Model):
+    user = models.OneToOneField(CustomUser, on_delete=models.CASCADE)
+    follows = models.ManyToManyField(CustomUser, related_name="Following")

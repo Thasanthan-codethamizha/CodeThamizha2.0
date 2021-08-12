@@ -1,7 +1,8 @@
 from django.http.response import JsonResponse
 from django.shortcuts import render
+from rest_framework import serializers
 
-from .serializers import UserSerializer
+from .serializers import FollowingSerializer, UserSerializer
 from .models import *
 from django.contrib.auth import get_user_model
 User = get_user_model()
@@ -16,5 +17,12 @@ def user_view(request):
 def user_detail(request, pk):
     user = User.objects.all().get(id=pk)
     serializer = UserSerializer(user, many=False)
+
+    return JsonResponse(serializer.data, safe=False)
+
+
+def following_detail(request, pk):
+    followings = Following.objects.all().get(user=request.user)
+    serializer = FollowingSerializer(followings, many=False)
 
     return JsonResponse(serializer.data, safe=False)

@@ -27,7 +27,7 @@ class Event(models.Model):
         return self.Title
 
 
-class EventRegistration(models.Model):
+class EventRegister(models.Model):
     event = models.ForeignKey(
         Event, verbose_name='Event', on_delete=models.CASCADE)
     user = models.ForeignKey(
