@@ -16,14 +16,14 @@ User = get_user_model()
 
 @api_view(['GET'])
 def posts_view(request):
-    posts = Post.objects.all()
+    posts = Post.objects.all().filter(aproved=True)
     serializer = PostSerializer(posts, many=True)
     return JsonResponse(serializer.data, safe=False)
 
 
 @api_view(['GET'])
 def posts_detail(request, pk):
-    post = Post.objects.all().get(id=pk)
+    post = Post.objects.all().filter(aproved=True).get(id=pk)
     serializer = PostSerializer(post, many=False)
     return JsonResponse(serializer.data, safe=False)
 
@@ -33,7 +33,7 @@ def posts_detail(request, pk):
 @authentication_classes([SessionAuthentication, TokenAuthentication, ])
 def posts_detail_edit(request, pk):
     try:
-        post = Post.objects.all().get(id=pk, user=request.user)
+        post = Post.objects.all().filter(aproved=True).get(id=pk, user=request.user)
     except Post.DoesNotExist:
         return HttpResponse(status=status.HTTP_404_NOT_FOUND)
     if request.method == 'GET':
@@ -60,13 +60,20 @@ def posts_detail_edit(request, pk):
 def followinguser_posts(request):
 
     posts = Post.objects.all().filter(
-        user__following__follower=request.user)
+        user__following__follower=request.user, aproved=True)
     serializer = PostSerializer(posts, many=True)
     return JsonResponse(serializer.data, safe=False)
 
 
 @api_view(['GET'])
 def topic_posts(request, topic):
-    posts = Post.objects.all().filter(topic__topic=topic)
+    posts = Post.objects.all().filter(topic__topic=topic, aproved=True)
     serializer = PostSerializer(posts, many=True)
     return JsonResponse(serializer.data, safe=False)
+
+
+@api_view(['GET', 'PUT', 'DELETE'])
+@permission_classes([IsAuthenticated])
+@authentication_classes([SessionAuthentication, TokenAuthentication, ])
+def aprove_post(request, pk):
+    """if request.user.user_type"""

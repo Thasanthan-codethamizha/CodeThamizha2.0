@@ -10,6 +10,7 @@ class Post(models.Model):
     info = models.TextField()
     user = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
     topic = models.ForeignKey(Topic, on_delete=models.CASCADE)
+    aproved = models.BooleanField(default=False)
 
     def __str__(self):
         return "{} posted {}".format(self.user.username, self.title)
