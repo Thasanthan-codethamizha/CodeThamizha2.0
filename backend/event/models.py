@@ -32,6 +32,8 @@ class EventRegister(models.Model):
         Event, verbose_name='Event', on_delete=models.CASCADE)
     user = models.ForeignKey(
         User, verbose_name='Attendee', on_delete=models.CASCADE)
+    teacher = models.ForeignKey(
+        User, related_name='Teacher', on_delete=models.CASCADE)
 
     def __str__(self):
         return self.user.username

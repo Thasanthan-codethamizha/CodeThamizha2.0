@@ -1,4 +1,3 @@
-
 from django.http.response import HttpResponse, JsonResponse
 from django.shortcuts import render
 from .serializers import *
@@ -9,64 +8,49 @@ from django.views.decorators.csrf import csrf_exempt
 from rest_framework.authentication import TokenAuthentication, SessionAuthentication
 from rest_framework.response import Response
 from rest_framework import status
-# Create your views here.
 from django.contrib.auth import get_user_model
 User = get_user_model()
 
 
-@api_view(['GET'])
-def posts_view(request):
-    posts = Post.objects.all()
-    serializer = PostSerializer(posts, many=True)
+def user_view(request):
+    users = User.objects.all()
+    serializer = UserSerializer(users, many=True)
     return JsonResponse(serializer.data, safe=False)
 
 
 @api_view(['GET'])
-def posts_detail(request, pk):
-    post = Post.objects.all().get(id=pk)
-    serializer = PostSerializer(post, many=False)
+def user_detail(request, pk):
+    user = User.objects.all().get(id=pk)
+    serializer = UserSerializer(user, many=False)
+
     return JsonResponse(serializer.data, safe=False)
 
 
 @api_view(['GET', 'PUT', 'DELETE'])
 @permission_classes([IsAuthenticated])
 @authentication_classes([SessionAuthentication, TokenAuthentication, ])
-def posts_detail_edit(request, pk):
+def user_detail_edit(request, pk):
     try:
-        post = Post.objects.all().get(id=pk, user=request.user)
-    except Post.DoesNotExist:
+        user = User.objects.all().get(id=pk, username=request.user.username)
+    except User.DoesNotExist:
         return HttpResponse(status=status.HTTP_404_NOT_FOUND)
     if request.method == 'GET':
-        serializer = PostSerializer(post, many=False)
+        serializer = UserSerializer(user, many=False)
         return JsonResponse(serializer.data, safe=False)
     elif request.method == 'PUT':
-        serializer = PostSerializer(post, many=False)
+        serializer = UserSerializer(user, many=False)
         if serializer.is_valid():
             serializer.save()
             return JsonResponse(serializer.data, safe=False)
         else:
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
     elif request.method == 'DELETE':
-        post.delete()
+        user.delete()
         return HttpResponse(status=status.HTTP_204_NO_CONTENT)
 
-    serializer = PostSerializer(post, many=False)
-    return JsonResponse(serializer.data, safe=False)
 
+def following_detail(request, pk):
+    followings = Follow.objects.all().get(user=request.user)
+    serializer = FollowingSerializer(followings, many=False)
 
-@api_view(['GET'])
-@permission_classes([IsAuthenticated])
-@authentication_classes([SessionAuthentication, TokenAuthentication, ])
-def followinguser_posts(request):
-
-    posts = Post.objects.all().filter(
-        user__following__follower=request.user)
-    serializer = PostSerializer(posts, many=True)
-    return JsonResponse(serializer.data, safe=False)
-
-
-@api_view(['GET'])
-def topic_posts(request, topic):
-    posts = Post.objects.all().filter(topic__topic=topic)
-    serializer = PostSerializer(posts, many=True)
     return JsonResponse(serializer.data, safe=False)

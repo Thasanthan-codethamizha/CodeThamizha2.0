@@ -20,7 +20,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-    'users',
+    'customuser',
     'tags',
     'post',
     'event',
@@ -111,7 +111,7 @@ USE_L10N = True
 
 USE_TZ = True
 
-AUTH_USER_MODEL = 'users.CustomUser'
+AUTH_USER_MODEL = 'customuser.CustomUser'
 
 
 # Static files (CSS, JavaScript, Images)
