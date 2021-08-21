@@ -6,46 +6,46 @@ import { SidebarData } from './SidebarData';
 import './Navbar.css';
 import { IconContext } from 'react-icons';
 import {
+  Nav,
   NavLink,
   NavMenu,
   NavBtn,
   NavBtnLink
 } from './NavbarElements';
+import { useCookies } from 'react-cookie';
 function Header() {
-  const [sidebar, setSidebar] = useState(true);
-
+  const [sidebar, setSidebar] = useState(false);
+  const [token,setToken]=useCookies(['mytoken'])
   const showSidebar = () => setSidebar(!sidebar);
 
   return (
     <>
       <IconContext.Provider value={{ color: '#fff' }}>
         <div className='navbar'>
-            <Link to='#' className='menu-bars'>
+          <Link to='#' className='menu-bars'>
               <FaIcons.FaBars onClick={showSidebar} />
-            </Link>
+          </Link>
             <NavLink to='/'>
-            <img src={require('../images/logo.svg')} alt='logo' />
           </NavLink>
-          
-          <NavMenu className="navmenu">
-            <NavLink to='/about' activeStyle>
-              About
-            </NavLink>
-            <NavLink to='/services' activeStyle>
-              Services
-            </NavLink>
-            <NavLink to='/contact-us' activeStyle>
-              Contact Us
-            </NavLink>
-            <NavLink to='/sign-up' activeStyle>
-              Sign Up
-            </NavLink>
-            {/* Second Nav */}
-            {/* <NavBtnLink to='/sign-in'>Sign In</NavBtnLink> */}
-          </NavMenu>
-          
+          <Nav>
+            <NavMenu className="navmenu">
+              <NavLink to='/about' activeStyle>
+                About
+              </NavLink>
+              <NavLink to='/services' activeStyle>
+                Services
+              </NavLink>
+              
+              <NavLink to='/sign-up' activeStyle>
+                Sign Up
+              </NavLink>
+              {/* Second Nav */}
+              {/* <NavBtnLink to='/sign-in'>Sign In</NavBtnLink> */}
+            </NavMenu>
+          </Nav>
           <NavBtn>
-            <NavBtnLink to='/signin'>Sign In</NavBtnLink>
+            {token['mytoken'] ? <NavBtnLink to='/profile'>Profile</NavBtnLink>  : <NavBtnLink to='/signin'>SignIn</NavBtnLink>}
+           
           </NavBtn>
         </div>
         <nav className={sidebar ? 'nav-menu active' : 'nav-menu'}>

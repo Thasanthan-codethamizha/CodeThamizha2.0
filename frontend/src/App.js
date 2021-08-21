@@ -5,8 +5,14 @@ import Home from './pages/Home';
 import Reports from './pages/Reports';
 import Products from './pages/Products';
 import Header from './components/Header';
+import SignIn from './pages/SignIn';
+import SignUp from './components/SignUp';
+import {useCookies} from 'react-cookie'
+import Profile from './components/Profile';
+
 
 function App() {
+  const [token,setToken]=useCookies(['mytoken'])
   return (
     <>
       <Router>
@@ -15,6 +21,9 @@ function App() {
           <Route path='/' exact component={Home} />
           <Route path='/reports' component={Reports} />
           <Route path='/products' component={Products} />
+          <Route path='/signin' exact component={SignIn} />
+          <Route path='/sign-up' exact component={SignUp} />
+          <Route path='/profile' exact component={Profile} />
         </Switch>
       </Router>
     </>
