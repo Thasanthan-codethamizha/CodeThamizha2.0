@@ -18,6 +18,16 @@ def user_view(request):
     return JsonResponse(serializer.data, safe=False)
 
 
+@api_view(['GET', 'POST'])
+def user_create(request):
+    if request.method == 'POST':
+        serializer = UserSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
 @api_view(['GET'])
 def user_detail(request, pk):
     user = User.objects.all().get(id=pk)

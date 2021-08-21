@@ -20,11 +20,12 @@ USER_TYPES = (
 class CustomUser(AbstractUser):
     username = models.CharField(max_length=120, unique=True)
     password = models.CharField(max_length=120, blank=True)
-    user_type = models.CharField(max_length=13, choices=USER_TYPES)
+    user_type = models.CharField(
+        max_length=13, choices=USER_TYPES, default="Member")
     email = models.EmailField(max_length=120, blank=True)
     phone_number = models.CharField(max_length=15, blank=True, null=True)
-    full_name = models.CharField(max_length=120, blank=True, null=True)
-    points = models.IntegerField(blank=True, null=True)
+    full_name = models.CharField(max_length=120, blank=True)
+    points = models.IntegerField(blank=True, null=True, default=0)
 
     REQUIRED_FIELDS = []
 
