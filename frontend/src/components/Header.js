@@ -32,8 +32,8 @@ function Header() {
               <NavLink to='/about' activeStyle>
                 About
               </NavLink>
-              <NavLink to='/services' activeStyle>
-                Services
+              <NavLink to='/people' activeStyle>
+                People
               </NavLink>
               
               <NavLink to='/sign-up' activeStyle>

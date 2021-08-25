@@ -55,17 +55,19 @@ function SignIn() {
     const [isLogin,setLogin]=useState(true)
     let history =useHistory()
 
-    useEffect(()=>{
-        if(token['mytoken']){
-            history.push('/')
-        }
-    },[token])
+    
     const loginBtn=()=>{
         APIService.LoginUser({username,password})
         .then(resp => typeof(resp.token) != "undefined" ? setToken('mytoken',resp.token) :setToken('') )
         .catch(error => console.log(error))
         
     }
+
+    useEffect(()=>{
+      if(token['mytoken']){
+          history.push('/')
+      }
+  },[token])
     
     return (
       <Grid container component="main" className={classes.root}>
@@ -108,7 +110,7 @@ function SignIn() {
                 variant="contained"
                 color="primary"
                 className={classes.submit}
-                onClick={loginBtn()}
+                onClick={loginBtn}
               >
                 Sign In
               </Button>
