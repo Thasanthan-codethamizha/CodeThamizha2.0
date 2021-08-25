@@ -12,10 +12,27 @@ from django.contrib.auth import get_user_model
 User = get_user_model()
 
 
+@api_view(['GET'])
 def user_view(request):
     users = User.objects.all()
     serializer = UserSerializer(users, many=True)
     return JsonResponse(serializer.data, safe=False)
+
+
+@api_view(['GET'])
+@permission_classes([IsAuthenticated])
+@authentication_classes([SessionAuthentication, TokenAuthentication, ])
+def current_user(request):
+    if request.method == "GET":
+        return JsonResponse({
+            'id': request.user.id,
+            'username': request.user.username,
+            'full_name': request.user.full_name,
+            'email': request.user.email,
+            'user_type': request.user.user_type,
+            'phone_number': request.user.phone_number,
+            'points': request.user.points,
+        }, safe=False)
 
 
 @api_view(['GET', 'POST'])
@@ -40,8 +57,13 @@ def user_detail(request, pk):
 @permission_classes([IsAuthenticated])
 @authentication_classes([SessionAuthentication, TokenAuthentication, ])
 def user_detail_edit(request, pk):
+
     try:
-        user = User.objects.all().get(id=pk, username=request.user.username)
+
+        if pk == request.user.username:
+            user = User.objects.all().get(username=pk)
+        else:
+            return HttpResponse(status=status.HTTP_404_NOT_FOUND)
     except User.DoesNotExist:
         return HttpResponse(status=status.HTTP_404_NOT_FOUND)
     if request.method == 'GET':
@@ -59,8 +81,20 @@ def user_detail_edit(request, pk):
         return HttpResponse(status=status.HTTP_204_NO_CONTENT)
 
 
+@api_view(['GET', 'PUT', 'DELETE'])
+@permission_classes([IsAuthenticated])
+@authentication_classes([SessionAuthentication, TokenAuthentication, ])
 def following_detail(request, pk):
-    followings = Follow.objects.all().get(user=request.user)
-    serializer = FollowingSerializer(followings, many=False)
+    followings = Follow.objects.all().filter(follower__username=pk)
+    serializer = FollowingSerializer(followings, many=True)
 
+    return JsonResponse(serializer.data, safe=False)
+
+
+@api_view(['GET', 'PUT', 'DELETE'])
+@permission_classes([IsAuthenticated])
+@authentication_classes([SessionAuthentication, TokenAuthentication, ])
+def followers_detail(request, pk):
+    followers = Follow.objects.all().filter(following__username=pk)
+    serializer = FollowingSerializer(followers, many=True)
     return JsonResponse(serializer.data, safe=False)

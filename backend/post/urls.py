@@ -3,8 +3,8 @@ from .views import *
 
 urlpatterns = [
     path('', posts_view),
-    path('<int:pk>/', posts_detail),
-    path('<int:pk>/edit', posts_detail_edit),
+    path('<str:pk>/', posts_detail),
+    path('<str:pk>/edit', posts_detail_edit),
     path('following/', followinguser_posts),
     path('<str:topic>/', topic_posts),
 

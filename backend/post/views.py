@@ -23,7 +23,7 @@ def posts_view(request):
 
 @api_view(['GET'])
 def posts_detail(request, pk):
-    post = Post.objects.all().filter(aproved=True).get(id=pk)
+    post = Post.objects.all().filter(aproved=True).get(username=pk)
     serializer = PostSerializer(post, many=False)
     return JsonResponse(serializer.data, safe=False)
 
@@ -33,7 +33,7 @@ def posts_detail(request, pk):
 @authentication_classes([SessionAuthentication, TokenAuthentication, ])
 def posts_detail_edit(request, pk):
     try:
-        post = Post.objects.all().filter(aproved=True).get(id=pk, user=request.user)
+        post = Post.objects.all().filter(aproved=True).get(username=pk, user=request.user)
     except Post.DoesNotExist:
         return HttpResponse(status=status.HTTP_404_NOT_FOUND)
     if request.method == 'GET':
