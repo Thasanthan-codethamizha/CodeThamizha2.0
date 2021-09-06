@@ -17,7 +17,7 @@ const useStyles = makeStyles((theme) => ({
       height: '100vh',
     },  
     image: {
-      backgroundImage: 'url(http://127.0.0.1:8000/images/thasa.jpg)',
+      backgroundImage: 'url(http://192.168.1.12/images/thasa.jpg)',
       backgroundRepeat: 'no-repeat',  
       backgroundColor:
         theme.palette.type === 'light' ? theme.palette.grey[50] : theme.palette.grey[900],

@@ -28,7 +28,10 @@ function Header() {
             <NavLink to='/'>
           </NavLink>
           <Nav>
-            <NavMenu className="navmenu">
+            <NavMenu className="navmenu"> 
+              <NavLink to='/' activeStyle>
+                Home
+              </NavLink>
               <NavLink to='/about' activeStyle>
                 About
               </NavLink>

@@ -18,6 +18,8 @@ function App() {
     <>
       <Router>
         <Header/>
+        <br/>
+        <br/>
         <Switch>
           <Route path='/' exact component={Home} />
           <Route path='/reports' component={Reports} />
