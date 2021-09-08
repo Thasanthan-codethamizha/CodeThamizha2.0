@@ -32,6 +32,7 @@ def current_user(request):
             'user_type': request.user.user_type,
             'phone_number': request.user.phone_number,
             'points': request.user.points,
+            'profile_pic': str(request.user.profile_pic),
         }, safe=False)
 
 

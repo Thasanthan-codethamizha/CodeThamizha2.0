@@ -8,6 +8,8 @@ User = get_user_model()
 EVENT_LOCATION = (
     ('Zoom', 'Zoom'),
     ('GoogleMeet', 'GoogleMeet'),
+    ('Youtube', 'Youtube'),
+    ('Discord', 'Discord'),
     ('Teams', 'Teams'),
     ('Other', 'Other'),
 )
@@ -15,6 +17,9 @@ EVENT_LOCATION = (
 
 class Event(models.Model):
     Title = models.CharField(max_length=120)
+    event_poster = models.ImageField(
+        upload_to='event_poster/', blank=True, null=True)
+    event_date = models.DateTimeField(blank=True, null=True)
     event_location = models.CharField(max_length=150, choices=EVENT_LOCATION)
     info = models.TextField()
     Description = models.TextField()

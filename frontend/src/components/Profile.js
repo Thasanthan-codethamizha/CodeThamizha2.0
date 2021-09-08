@@ -11,6 +11,7 @@ function Profile() {
     const [following,setFollowing]=useState('')
     const [user,setUser]=useState('')
     const [posts,setPosts]=useState('')
+    const [editstatus,setEditStatus]=useState(false)
     
     let history =useHistory()
 
@@ -67,7 +68,7 @@ function Profile() {
             <div class="wrapper">
   <div class="profile-card js-profile-card">
     <div class="profile-card__img">
-      <img src="https://res.cloudinary.com/muhammederdem/image/upload/v1537638518/Ba%C5%9Fl%C4%B1ks%C4%B1z-1.jpg" alt="profile card"/>
+      <img src={`http://192.168.1.12/images/${user.profile_pic}`} alt="profile card"/>
     </div>
 
     <div class="profile-card__cnt js-profile-cnt">
@@ -98,30 +99,35 @@ function Profile() {
         
 
       </div>
-<center>
-<div class="form">
-      <div class="input-container ic1">
-        <input id="firstname" class="input" type="text" placeholder=" " />
-        <div class="cut"></div>
-        <label for="firstname" class="placeholder">First name</label>
-      </div>
-      <div class="input-container ic2">
-        <input id="lastname" class="input" type="text" placeholder=" " />
-        <div class="cut"></div>
-        <label for="lastname" class="placeholder">Last name</label>
-      </div>
-      <div class="input-container ic2">
-        <input id="email" class="input" type="text" placeholder=" " />
-        <div class="cut cut-short"></div>
-        <label for="email" class="placeholder">Email</label>
-      </div>
-      <button type="text" class="submit">submit</button>
-    </div></center>
+
+      {editstatus? 
+        <center>
+        <div class="form">
+              <div class="input-container ic1">
+                <input id="firstname" class="input" type="text" placeholder=" " />
+                <div class="cut"></div>
+                <label for="firstname" class="placeholder">First name</label>
+              </div>
+              <div class="input-container ic2">
+                <input id="lastname" class="input" type="text" placeholder=" " />
+                <div class="cut"></div>
+                <label for="lastname" class="placeholder">Last name</label>
+              </div>
+              <div class="input-container ic2">
+                <input id="email" class="input" type="text" placeholder=" " />
+                <div class="cut cut-short"></div>
+                <label for="email" class="placeholder">Email</label>
+              </div>
+              <button type="text" class="submit">submit</button>
+            </div></center>
+    : null
+      }
+
 
       
 
       <div class="profile-card-ctr">
-        <button class="profile-card__button button--blue js-message-btn">Edit</button>
+        <button class="profile-card__button button--blue js-message-btn" onClick={()=>{setEditStatus(!editstatus)}}>Edit</button>
       </div>
       <Button style={{borderRadius:"10px"}} onClick={logoutBtn} className="btn btn-danger" data-bs-toggle="tooltip" data-bs-placement="top" title="Logout">
                         Logout

@@ -20,6 +20,8 @@ USER_TYPES = (
 class CustomUser(AbstractUser):
     username = models.CharField(max_length=120, unique=True)
     password = models.CharField(max_length=120, blank=True)
+    profile_pic = models.ImageField(
+        upload_to='profile_pics/', blank=True, null=True, default='profile_pics/default.jpg')
     user_type = models.CharField(
         max_length=13, choices=USER_TYPES, default="Member")
     email = models.EmailField(max_length=120, blank=True)

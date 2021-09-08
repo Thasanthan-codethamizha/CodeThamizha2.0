@@ -12,7 +12,9 @@
 .home .textcontainer{
   margin: auto;
   width: 50%;
-  padding: 10px;
+  padding-left: 3rem;
+  padding-bottom: 10px;
+  padding-top: 10px;
 
 }
 .home .textcontainer h1{  
@@ -32,26 +34,35 @@
 .home .imagecontainer img{
   width: 80%;
   
+  
 }
 @media screen and (max-width: 768px) {
+  .home{
+    margin-top: 2rem;
+  }
   .home .textcontainer{
     width: 100%;
   }
   .home .imagecontainer{
     width:100%;
   }
-  .home .textcontainer h1{
-    font-size: 200%;
+  .home .textcontainer .ctn1{
+    font-size: 2rem;
   } 
   .home,
 .reports,
 .products {
-  margin-left: 1rem;
+  margin-left: 0rem;
 }
 
 }
 
+.discordlogo{
+  width: 300px;
+  border-radius: 10%;
+  
 
+}
 
 
 
@@ -60,37 +71,96 @@
 /********** About CSS **********/
 /*******************************/
 .discord{
+  margin-top: 3rem;
+  margin-bottom: 3rem;
     display: flex;
   justify-content: center;
   word-wrap: break-word;
-  margin-left: 5rem;
+  margin-left:6rem;
   margin-right: 1rem;
   flex-wrap: wrap;
+ 
+}
+
+@media screen and (max-width: 768px) {
+  .discord{
+  margin-left: 1rem;
+margin-right: 1rem;}
+.discord  .discord-panel{
+  display: none;
+}
+  
 }
 .discord .section-header{
 margin: auto;
   width: 50%;
   padding: 10px;
 }
-.join-discord{
+.discord .section-header h1{
+  font-size: 2rem;
+  font-weight: 900;
 
+}
+.join-discord{
+  background-color: #292929; /* Green */
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  cursor: pointer;
 }
 .discord  .discord-panel{
     margin: auto;
   width: 50%;
   padding: 10px;
 }
-
-.iframe-container{
-    position: relative;
-    width: 100%;
-    padding-bottom: 56.25%; 
-    height: 0;
-  }
-  .iframe-container iframe{
-    position: absolute;
-    top:0;
-    left: 0;
-    width: 100%;
-    height: 100%;
+.youtube{
+  padding:3rem; 
+  height: 100%;
+  background-color: #b9c9e271;
+  margin-bottom: 3rem;
 }
+.youtube a{
+  text-decoration: none;
+  color: inherit;
+}
+
+.youtube .logo{
+  width: 300px;
+  height: auto;
+}
+.youtube .logo img{
+  width: 100%;
+  -webkit-filter: drop-shadow(12px 12px 7px rgba(0, 0, 0, 0.5));
+     filter: drop-shadow(12px 12px 7px rgba(0, 0, 0, 0.5));
+}
+
+@media screen and (max-width: 768px) {
+  .discord .section-header{
+    
+      width: 100%;
+    }
+    .discord  .discord-panel{
+    width: 100%;
+  }
+}
+
+
+
+
+
+
+/**********************************EVENTS************************************/
+.events{
+  background-color: #c5d3e99f;
+}
+.event-row{
+  @media screen and (max-width: 768px) {
+  }
+}
+
+.scrolling-wrapper {
+} 

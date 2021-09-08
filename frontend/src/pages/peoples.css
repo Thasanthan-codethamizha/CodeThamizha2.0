@@ -1,0 +1,76 @@
+.peoples{
+    display: flex;
+    height: 100vh;
+    flex-wrap: wrap;
+    height: 100vh;
+    overflow-x: hidden; 
+    overflow-y: scroll;
+}
+.peoples .profile-card {
+    margin:1rem;
+    flex: 1 1 30%;
+    max-width: 300px;
+    height: 300px;
+    background: #fff;
+    padding: 20px 60px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 4px;
+    box-shadow: 0 0 2px 0 #ccc;
+    transition: .3s;
+}
+
+.peoples .profile-card:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0 25px -5px #ccc;
+}
+
+.peoples .profile-icon {
+    height: 100px;
+    width: 100px;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+.peoples .profile-name {
+    font-size: 100%;
+    font-weight: bold;
+    margin: 25px 0 10px 0;
+}
+
+.peoples .profile-position {
+    font-size: 14px;
+    color: #777;
+}
+
+.peoples .button {
+    margin: 30px 0 0 0;
+    padding: 10px 30px;
+    color: #999;
+    text-decoration: none;
+    border: 1px solid #999;
+    border-radius: 4px;
+}
+
+.peoples .button:hover {
+    color: #fff;
+    background: #748dff;
+    border: 1px solid #748dff;
+}
+
+@media screen and (max-width: 1000px) {
+    .peoples .profile-name {
+        font-size: 18px;
+    }
+}
+
+@media screen and (max-width: 800px) {
+    .peoples .profile-card {
+        padding: 20px 15px;
+    }
+
+    .peoples .profile-name {
+        font-size: 16px;
+    }
+}

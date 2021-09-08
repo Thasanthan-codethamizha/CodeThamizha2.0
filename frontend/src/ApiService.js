@@ -72,6 +72,17 @@ export default class APIService {
             })
             .then(resp=>resp.json())
     }
+
+    static AllEventsView(){
+        return fetch(`${BASE_URL}/data/events/`,{
+            'method':'GET',
+            headers:{
+                'Content-Type':'application/json',
+            }
+            })
+            .then(resp=>resp.json())
+    }
+
     static AllPostsView(){
         return fetch(`${BASE_URL}/data/posts/`,{
             'method':'GET',

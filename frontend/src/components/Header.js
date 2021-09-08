@@ -32,16 +32,14 @@ function Header() {
               <NavLink to='/' activeStyle>
                 Home
               </NavLink>
-              <NavLink to='/about' activeStyle>
-                About
+              <NavLink to='/blogs' activeStyle>
+                Explore
               </NavLink>
-              <NavLink to='/people' activeStyle>
-                People
+              <NavLink to='/community' activeStyle>
+                Community
               </NavLink>
+              {!token['mytoken']?<NavLink to='/sign-up' activeStyle>Sign Up</NavLink>:null}
               
-              <NavLink to='/sign-up' activeStyle>
-                Sign Up
-              </NavLink>
               {/* Second Nav */}
               {/* <NavBtnLink to='/sign-in'>Sign In</NavBtnLink> */}
             </NavMenu>
