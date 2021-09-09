@@ -48,7 +48,7 @@ def user_create(request):
 
 @api_view(['GET'])
 def user_detail(request, pk):
-    user = User.objects.all().get(id=pk)
+    user = User.objects.all().get(username=pk)
     serializer = UserSerializer(user, many=False)
 
     return JsonResponse(serializer.data, safe=False)
@@ -82,7 +82,7 @@ def user_detail_edit(request, pk):
         return HttpResponse(status=status.HTTP_204_NO_CONTENT)
 
 
-@api_view(['GET', 'PUT', 'DELETE'])
+@api_view(['GET'])
 @permission_classes([IsAuthenticated])
 @authentication_classes([SessionAuthentication, TokenAuthentication, ])
 def following_detail(request, pk):
@@ -92,7 +92,7 @@ def following_detail(request, pk):
     return JsonResponse(serializer.data, safe=False)
 
 
-@api_view(['GET', 'PUT', 'DELETE'])
+@api_view(['GET'])
 @permission_classes([IsAuthenticated])
 @authentication_classes([SessionAuthentication, TokenAuthentication, ])
 def followers_detail(request, pk):

@@ -40,6 +40,14 @@ export default class APIService {
             }
             }).then(resp=>resp.json())
     }
+    static PeopledetailView(username){
+        return fetch(`${BASE_URL}/data/users/${username}`,{
+            'method':'GET',
+            headers:{
+                'Content-Type':'application/json',
+            }
+            }).then(resp=>resp.json())
+    }
 
     static ProfileView(token){
         return fetch(`${BASE_URL}/data/users/profile/`,{
@@ -72,6 +80,7 @@ export default class APIService {
             })
             .then(resp=>resp.json())
     }
+    
 
     static AllEventsView(){
         return fetch(`${BASE_URL}/data/events/`,{

@@ -7,5 +7,5 @@ urlpatterns = [
     path('<str:pk>/', user_detail),
     path('<str:pk>/edit/', user_detail_edit),
     path('<str:pk>/following/', following_detail),
-    path('<str:pk>/followers/', followers_detail)
+    path('<str:pk>/followers/', followers_detail),
 ]

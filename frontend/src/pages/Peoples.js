@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import APIService from '../ApiService'
 import './peoples.css'
 import {useCookies} from 'react-cookie'
+import { Link } from 'react-router-dom'
 
 
 function Peoples() {
@@ -62,7 +63,9 @@ function Peoples() {
                             <img src={`http://192.168.1.12${people.profile_pic}`} alt="image1" class="profile-icon" />
                             <div class="profile-name">{people.full_name}</div>
                             <div class="profile-position">{people.user_type}</div>
-                            <a href="#" class="button">View</a>
+                            <Link style={{textDecoration:'none'}}class="button" to={`/users/${people.username}`}>
+                            View</Link>
+                            
                                     
                             
                            

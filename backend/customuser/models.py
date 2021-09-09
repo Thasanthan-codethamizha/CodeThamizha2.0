@@ -33,6 +33,9 @@ class CustomUser(AbstractUser):
 
     objects = CustomUserManager()
 
+    class Meta:
+        ordering = ('-points',)
+
     def __str__(self):
         return self.username
 
