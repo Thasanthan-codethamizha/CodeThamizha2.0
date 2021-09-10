@@ -17,7 +17,7 @@ function Eventcard({teacher,image,points,price,info, title, date, location, desc
         <div class="card">
   <div class="card-header">
      
-    <img src={`http://192.168.1.12${image}`} alt="rover" />
+    <img src={`http://127.0.0.1:8000${image}`} alt="rover" />
     
   </div>
   <div class="card-body">
@@ -36,7 +36,7 @@ function Eventcard({teacher,image,points,price,info, title, date, location, desc
 
     </p>
     <div class="user">
-      <img src={`http://192.168.1.12${teacher.profile_pic}`} alt="user" />
+      <img src={`http://127.0.0.1:8000${teacher.profile_pic}`} alt="user" />
       <div class="user-info">
         <h5>{teacher.username}</h5>
         <small>{teacher.user_type}</small>

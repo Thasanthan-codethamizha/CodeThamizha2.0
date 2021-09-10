@@ -1,16 +1,23 @@
-import React from 'react';
-import Eventcard from '../components/elements/Eventcard';
+import React, { useState, useEffect } from 'react'
+
 import Eventsection from '../components/elements/Eventsection';
 import Hoverbutton1 from '../components/elements/hoverbutton1';
 import Portfolio from '../components/Portfolio';
 import './home.css'
+import Loadingscreen from './Loadingscreen';
 
 
 function Home() {
-  
+  const [loading, setLoading] = useState(true)
+
+  useEffect(() => {
+    setTimeout(() => setLoading(false), 1000)
+  }, [])
   
   return (
     <div className='landing'>
+      {loading ===false ? (
+        <>
       <div className="home">
         <div className="textcontainer">
           <h1>Community with Smartest People <div className="ctn1">Code Thamizha</div> </h1>
@@ -19,7 +26,7 @@ function Home() {
         </div>
         <div className="imagecontainer">
           <center>
-            <img src="http://192.168.1.12/images/home2.jpg"></img>
+            <img src="http://127.0.0.1:8000/images/home2.jpg"></img>
           </center>
 
         </div>
@@ -44,7 +51,7 @@ function Home() {
               <div class="section-header">
                 <p>CodeThamizha Software Solutions</p>
                 <br/>
-                <img className="discordlogo" src="http://192.168.1.12/images/discord.png"></img>
+                <img className="discordlogo" src="http://127.0.0.1:8000/images/discord.png"></img>
                 <h1>JOIN OUR DISCORD</h1>
                 <p>
                                         We Are Building Up a great community on Discord.Join our Server for more info    
@@ -70,13 +77,15 @@ function Home() {
                 <br/>
                 <h2>on</h2>
                 <div class="logo">
-                  <img className="youtubelogo" src="http://192.168.1.12/images/youtubelogo.png"></img>
+                  <img className="youtubelogo" src="http://127.0.0.1:8000/images/youtubelogo.png"></img>
                 </div></a>
               </div>
         </center>
       </div>
       <Portfolio />
-
+      </>
+      ):(<Loadingscreen/>)
+      }
     </div>
 
   );

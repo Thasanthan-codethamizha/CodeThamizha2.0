@@ -8,7 +8,7 @@ function Portfolio() {
             <div class="portfolio" data-wow-delay="0.1s">
                 <center>
                         <div class="founder-img" data-aos="fade-up">
-                                <img src="http://192.168.1.12/images/thasa1.jpg" alt="Image"/>
+                                <img src="http://127.0.0.1:8000/images/thasa1.jpg" alt="Image"/>
                         </div>
                         
                         
