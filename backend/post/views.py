@@ -23,7 +23,7 @@ def posts_view(request):
 
 @api_view(['GET'])
 def posts_detail(request, pk):
-    post = Post.objects.all().filter(aproved=True).get(username=pk)
+    post = Post.objects.all().get(title=pk)
     serializer = PostSerializer(post, many=False)
     return JsonResponse(serializer.data, safe=False)
 

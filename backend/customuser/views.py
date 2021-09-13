@@ -82,6 +82,39 @@ def user_detail_edit(request, pk):
         return HttpResponse(status=status.HTTP_204_NO_CONTENT)
 
 
+@api_view(['GET', 'POST'])
+@permission_classes([IsAuthenticated])
+@authentication_classes([SessionAuthentication, TokenAuthentication, ])
+def follow_create(request):
+    if request.method == 'POST':
+        serializer = FollowingSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+@api_view(['GET', 'DELETE'])
+@permission_classes([IsAuthenticated])
+@authentication_classes([SessionAuthentication, TokenAuthentication, ])
+def follow_detail_edit(request, following):
+
+    try:
+        if pk == request.user.username:
+            follow = Follow.objects.all().get(
+                following__username=following, follower=request.user)
+        else:
+            return HttpResponse(status=status.HTTP_404_NOT_FOUND)
+    except User.DoesNotExist:
+        return HttpResponse(status=status.HTTP_404_NOT_FOUND)
+    if request.method == 'GET':
+        serializer = UserSerializer(follow, many=True)
+        return JsonResponse(serializer.data, safe=False)
+    elif request.method == 'DELETE':
+        follow.delete()
+        return HttpResponse(status=status.HTTP_204_NO_CONTENT)
+
+
 @api_view(['GET'])
 @permission_classes([IsAuthenticated])
 @authentication_classes([SessionAuthentication, TokenAuthentication, ])
