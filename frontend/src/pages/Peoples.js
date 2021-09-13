@@ -12,8 +12,15 @@ function Peoples() {
     const [user, setUser] = useState('');
     const [username, setUsername] = useState('');
     const [following, setFollowing] = useState([]);
+    const [currentuser,setCurrentuser]=useState([])
 
-    useEffect(() => {
+    useEffect(() => 
+    {
+      APIService.ProfileView(token)
+      .then(resp=>{setCurrentuser(resp) } )
+      .catch(error=>console.log(error))
+
+
         APIService.PeopleView().then(res => {
             setPeoples(res)
         })
@@ -59,8 +66,13 @@ function Peoples() {
       }
      }).map(people => {
                 return(
+                  <>
+                  {
+                    people.username === currentuser.username? <></> :(
+
+                 
                     <div class="profile-card">
-                            <img src={`http://192.168.1.12${people.profile_pic}`} alt="image1" class="profile-icon" />
+                            <img src={`https://codethamizha.com${people.profile_pic}`} alt="image1" class="profile-icon" />
                             <div class="profile-name">{people.full_name}</div>
                             <div class="profile-position">{people.user_type}</div>
                             <Link style={{textDecoration:'none'}}class="button" to={`/users/${people.username}`}>
@@ -70,6 +82,8 @@ function Peoples() {
                             
                            
                     </div>
+                    )}
+                    </>
                 )
             })}
              

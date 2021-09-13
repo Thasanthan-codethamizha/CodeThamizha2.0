@@ -12,7 +12,10 @@
     <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
    
     <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
-    
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+    />
     <title>Code Thamizha Software Solutions</title>
     
     <!-- Global site tag (gtag.js) - Google Ads: CONVERSION_ID -->
@@ -24,6 +27,15 @@
 
     gtag('config','AW-CONVERSION_ID');
   </script>
+  <script src="https://cdn.onesignal.com/sdks/OneSignalSDK.js" async=""></script>
+<script>
+  window.OneSignal = window.OneSignal || [];
+  OneSignal.push(function() {
+    OneSignal.init({
+      appId: "9ce1760a-31b5-41f0-b12d-bb406915aeba",
+    });
+  });
+</script>
   </head>
   <body>
     <div id="root"></div>

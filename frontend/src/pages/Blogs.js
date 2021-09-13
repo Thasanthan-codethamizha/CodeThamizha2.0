@@ -1,16 +1,28 @@
 import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import APIService from '../ApiService';
 import './blogs.css'
+import Loadingscreen from './Loadingscreen';
 function Blogs() {
   const[blogs, setBlogs] =useState([])
   const [searchTerm, setSearchTerm] = useState('');
+  const [Loading, setLoading] = useState(true);
   useEffect(()=>{
     APIService.AllPostsView().then(res=>{
       setBlogs(res)
-    })  
+    }) 
+    .catch(err=>{
+      console.log(err)
+    })
+    .finally(() => {
+      setLoading(false)
+  })
   },[])
   return (
+
    <div className="blogs">
+     {Loading ? <Loadingscreen/> :(
+       <>
      <center>
        <br/>
      <div class="Card">
@@ -42,9 +54,9 @@ function Blogs() {
      }).map(blog=>{
        return(
 <div class="blog-item" key={blog.id}>
-          <a href="#">
+          <Link to={`/posts/${blog.title}/${blog.id}/`} style={{textDecoration:'none'}}>
               <div class="icon">
-                  <img src={`http://192.168.1.12${blog.blog_image}`} alt="helo"/>
+                  <img src={`https://codethamizha.com${blog.blog_image}`} alt="helo"/>
               </div>
               <div class="content">
                   <div class="title">{blog.title} <span class="blog-date">{blog.created_at.slice(0,10)}</span></div>
@@ -58,12 +70,13 @@ function Blogs() {
               <div class="item-arrow">
                   <i class="fa fa-long-arrow-right" aria-hidden="true"></i>
               </div>
-          </a>
+          </Link>
+         
 
       </div>
        )
      })}
-      
+       </>)}
 </div>
   );
 }

@@ -26,7 +26,7 @@ function Home() {
         </div>
         <div className="imagecontainer">
           <center>
-            <img src="http://127.0.0.1:8000/images/home2.jpg"></img>
+            <img src="https://codethamizha.com/images/home2.jpg"></img>
           </center>
 
         </div>
@@ -51,7 +51,7 @@ function Home() {
               <div class="section-header">
                 <p>CodeThamizha Software Solutions</p>
                 <br/>
-                <img className="discordlogo" src="http://127.0.0.1:8000/images/discord.png"></img>
+                <img className="discordlogo" src="https://codethamizha.com/images/discord.png"></img>
                 <h1>JOIN OUR DISCORD</h1>
                 <p>
                                         We Are Building Up a great community on Discord.Join our Server for more info    
@@ -77,7 +77,7 @@ function Home() {
                 <br/>
                 <h2>on</h2>
                 <div class="logo">
-                  <img className="youtubelogo" src="http://127.0.0.1:8000/images/youtubelogo.png"></img>
+                  <img className="youtubelogo" src="https://codethamizha.com/images/youtubelogo.png"></img>
                 </div></a>
               </div>
         </center>

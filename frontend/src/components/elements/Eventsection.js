@@ -4,6 +4,8 @@ import APIService from "../../ApiService";
 import 'react-multi-carousel/lib/styles.css';
 import Eventcard from "./Eventcard";
 import './styles/scroll.css'
+import { Link } from "react-router-dom";
+import Loadingscreen from "../../pages/Loadingscreen";
 function Eventsection(){
   const responsive = {
     superLargeDesktop: {
@@ -26,6 +28,7 @@ function Eventsection(){
   };
   const [activeSlideIndex,setActiveSlideIndex] = useState(0);
   const [events,setEvents] = useState([]);
+  const [Loading,setLoading] = useState(true);
   const SetActiveSlideIndex = (newActiveSlideIndex) => {
   setActiveSlideIndex(newActiveSlideIndex);
 };
@@ -37,18 +40,28 @@ useEffect(() => {
       setEvents(res)
       console.log(res);
     })
+    .catch((err) => {
+      console.log(err);
+    })
+    .finally(() => {
+      setLoading(false)
+  })
   },[])
 
 
     return (
-      <Carousel
+      <>
+        {Loading?<Loadingscreen/>:(
+          <Carousel
       responsive={responsive}
       focusOnSelect={true}
       >
-      {  events.map(event => <Eventcard teacher={event.teacher} key={event.id} image={event.event_poster} price={event.price} points={event.Points} title={event.Title} info={event.info} description={event.Description} location={event.event_location} date={event.event_date} link={event.EventLink} />)}
-      
-
+      {  events.map(event => <Eventcard  id={event.id} teacher={event.teacher} key={event.id} image={event.event_poster} price={event.price} points={event.Points} title={event.Title} info={event.info} description={event.Description} location={event.event_location} date={event.event_date} link={event.EventLink}/>)}
       </Carousel>
+      )
+      }
+      </>
+     
     )
 }
 

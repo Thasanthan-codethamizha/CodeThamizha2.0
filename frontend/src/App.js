@@ -18,6 +18,9 @@ import Peoples from './pages/Peoples';
 import Userprofile from './components/Userprofile';
 import Loadingscreen from './pages/Loadingscreen';
 import CustomSwitch from './CustomSwitch';
+import Singleblog from './pages/Post';
+import Support from './pages/Support';
+import Event from './pages/Event';
 
 
 function App() {
@@ -53,11 +56,14 @@ function App() {
           <Route path='/' exact component={Home} />
          
           <Route path='/blogs' component={Blogs} />
+          <Route path='/posts/:blogtitle/:id' exact component={Singleblog} />
           <Route path='/signin' exact component={SignIn} />
           <Route path='/sign-up' exact component={SignUp} />
           <Route path='/profile' exact component={Profile} />
           <Route path='/community' exact component={Peoples} />
-          <Route path='/users/:username' component={Userprofile} />
+          <Route path='/users/:username' exact component={Userprofile} />
+          <Route path='/support' exact component={Support} />
+          <Route path='/events/:name/:id' exact component={Event} />
         </CustomSwitch>
         
         <Footer/>

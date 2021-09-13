@@ -1,7 +1,5 @@
 
-.home,
-.reports,
-.products {
+.home {
   display: flex;
   justify-content: left;
   margin-left: 5rem;

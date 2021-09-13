@@ -1,0 +1,79 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+
+.support {
+    margin: 0;
+  padding: 0;
+  font-family: 'Poppins', sans-serif;
+  width: 100%;
+  height: 100vh;
+  background: #f1f9ff;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.support h1 {
+  font-size: 40px;
+  margin-bottom: 50px;
+  margin-top: -100px;
+}
+
+.support .social-links {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+@media screen and (max-width: 768px) {
+    .support .social-links {
+        margin-left: 2rem;
+    }
+    
+}
+.support .social-links a {
+  width: 80px;
+  height: 80px;
+  text-align: center;
+  text-decoration: none;
+  color: #000;
+  box-shadow: 0 0 20px 10px rgba(0, 0, 0, 0.05);
+  margin: 0px 30px;
+  margin-bottom: 10px;
+  border-radius: 50%;
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.5s;
+}
+
+.support .social-links a .fab {
+  font-size: 30px;
+  line-height: 80px;
+  position: relative;
+  z-index: 10;
+  transition: color 0.5s;
+}
+
+.support .social-links a::after {
+  content: '';
+  width: 100%;
+  height: 100%;
+  top: -90px;
+  left: 0;
+  background: #000;
+  background: linear-gradient(-45deg, #ed1c94, #ffec17);
+  position: absolute;
+  transition: 0.5s;
+}
+
+.support .social-links a:hover::after {
+  top: 0;
+}
+
+.support .social-links a:hover .fab {
+  color: #fff;
+}
+
+.support .social-links a:hover {
+  transform: translateY(-10px);
+}
+

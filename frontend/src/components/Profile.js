@@ -3,6 +3,7 @@ import React,{useEffect, useState} from 'react'
 import {useCookies} from 'react-cookie'
 import {useHistory} from 'react-router-dom'
 import APIService from '../ApiService'
+import Loadingscreen from '../pages/Loadingscreen'
 import './profile.css'
 
 function Profile() {
@@ -12,6 +13,7 @@ function Profile() {
     const [user,setUser]=useState('')
     const [posts,setPosts]=useState('')
     const [editstatus,setEditStatus]=useState(false)
+    const [Loading,setLoading]=useState(true)
     
     let history =useHistory()
 
@@ -34,6 +36,7 @@ function Profile() {
       APIService.FollowersView(token,username)
       .then(resp=>setFollowers(resp))
       .catch(error=>console.log(error))
+      .finally(()=>setLoading(false))
   
     }
     const getFollowing=(username)=>{
@@ -64,11 +67,11 @@ function Profile() {
     },[token,user])
     return (
         <div className="profile">
-            
+            {Loading?<Loadingscreen/>:(<>
             <div class="wrapper">
   <div class="profile-card js-profile-card">
     <div class="profile-card__img">
-      <img src={`http://192.168.1.12/images/${user.profile_pic}`} alt="profile card"/>
+      <img src={`https://codethamizha.com/images/${user.profile_pic}`} alt="profile card"/>
     </div>
 
     <div class="profile-card__cnt js-profile-cnt">
@@ -135,7 +138,7 @@ function Profile() {
     </div>
     </div>
 </div>
-
+</>)}
 </div>
     )
 }

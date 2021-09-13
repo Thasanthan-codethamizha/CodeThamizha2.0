@@ -1,4 +1,4 @@
-const BASE_URL="http://127.0.0.1:8000"
+const BASE_URL="https://www.codethamizha.com"
 
 export default class APIService {
     static LoginUser(body){
@@ -59,8 +59,19 @@ export default class APIService {
             })
             .then(resp=>resp.json())
     }
+    static FollowUser(body,token){
+        return fetch(`${BASE_URL}/data/users/`,{
+            method:'POST',
+            headers:{
+                'Content-Type':'application/json',
+                'Authorization':`Token ${token}`
+              },
+            body:JSON.stringify(body)
+        }).then(resp=>resp.json())
+    }
 
     static FollowersView(token,username){
+        
         return fetch(`${BASE_URL}/data/users/${username}/followers/`,{
             'method':'GET',
             headers:{
@@ -94,6 +105,24 @@ export default class APIService {
 
     static AllPostsView(){
         return fetch(`${BASE_URL}/data/posts/`,{
+            'method':'GET',
+            headers:{
+                'Content-Type':'application/json',
+            }
+            })
+            .then(resp=>resp.json())
+    }
+    static PostView(id){
+        return fetch(`${BASE_URL}/data/posts/${id}`,{
+            'method':'GET',
+            headers:{
+                'Content-Type':'application/json',
+            }
+            })
+            .then(resp=>resp.json())
+    }
+    static EventView(id){
+        return fetch(`${BASE_URL}/data/events/${id}/`,{
             'method':'GET',
             headers:{
                 'Content-Type':'application/json',
