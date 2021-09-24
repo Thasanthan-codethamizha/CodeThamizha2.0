@@ -3,7 +3,8 @@ import APIService from '../ApiService'
 import './peoples.css'
 import {useCookies} from 'react-cookie'
 import { Link } from 'react-router-dom'
-
+import Loadingscreen from './Loadingscreen'
+import {useHistory} from 'react-router-dom'
 
 function Peoples() {
     const [peoples, setPeoples] = useState([])
@@ -13,6 +14,33 @@ function Peoples() {
     const [username, setUsername] = useState('');
     const [following, setFollowing] = useState([]);
     const [currentuser,setCurrentuser]=useState([])
+    const [Loading,setLoading]=useState(true)
+    const [page, setPage] = useState(1);
+
+    let history =useHistory()
+    useEffect(() => {
+      if (token['mytoken']==undefined) {
+      history.push('/signin')
+    }
+   },[])
+
+    {/*
+      
+      const scrollToEnd= (event) => {
+      const target = event.target;
+      if(target.scrollHeight - target.scrollTop === target.clientHeight){
+        console.log('scroll to end')
+        setPage(page+1)
+      }
+    } 
+    useEffect(() => {
+      APIService.PeopleView(page).then(res => {
+        setPeoples([...peoples,res])
+    })
+    },[page])
+  
+  */}
+   
 
     useEffect(() => 
     {
@@ -24,6 +52,10 @@ function Peoples() {
         APIService.PeopleView().then(res => {
             setPeoples(res)
         })
+        .catch(error => console.log(error))
+        .finally(() => setLoading(false))
+
+
         APIService.ProfileView(token).then(res => {
             setUser(res)
             setUsername(res.username)
@@ -32,8 +64,10 @@ function Peoples() {
             setFollowing(res)
         })
     }, [username])
+    
     return (
-        <div> 
+        <div > 
+          {Loading ? <Loadingscreen/> :(<>
              <center>
        <br/>
      <div class="Card">
@@ -53,7 +87,7 @@ function Peoples() {
  </div>
 </div></center>
             <center>
-        <div className="peoples">
+        <div className="peoples" >
            
             {peoples.filter((p)=>{
        if(searchTerm==""){
@@ -89,6 +123,7 @@ function Peoples() {
              
         </div>
         </center>
+        </>)}
         </div>
     )
 }

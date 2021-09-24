@@ -7,6 +7,10 @@
   word-wrap: break-word;
   flex-wrap: wrap;
 }
+.home .homecard-btn{
+  display: flex;
+  flex-wrap: wrap;
+}
 .home .textcontainer{
   margin: auto;
   width: 50%;

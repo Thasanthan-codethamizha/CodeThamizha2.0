@@ -1,64 +1,68 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import './footer.css'
 function Footer() {
     return (
         <div class="footer">
       <div class="heading">
-        <h2>CodeThamizha<sup>soft</sup></h2>
+        <h2>CodeThamizha</h2>
       </div>
       <div class="content">
         <div class="services">
           <h4>Services</h4>
-          <p><a href="#">App development</a></p>
-          <p><a href="#">Web development</a></p>
-          <p><a href="#">DevOps</a></p>
-          <p><a href="#">Web designing</a></p>
+          <p><Link to='/support'>App development</Link></p>
+          <p><Link to='/support'>Web development</Link></p>
+          <p><Link to='/support'>VideoEditing</Link></p>
+          <p><Link to='/support'>Web designing</Link></p>
         </div>
         <div class="social-media">
           <h4>Social</h4>
           <p>
-            <a href="https://www.linkedin.com/in/sanket-bodke-995b5b205/"
+            <a href="https://www.youtube.com/codethamizha/"
+              ><i class="fab fa-youtube"></i> YouTube</a
+            >
+          </p>
+          <p>
+            <a href="https://discord.gg/5g4Zd4J"
+              ><i class="fab fa-discord"></i> Discord</a
+            >
+          </p>
+          
+
+          <p>
+            <a href="https://www.linkedin.com/in/thasanthan-code-thamizha/"
               ><i class="fab fa-linkedin"></i> Linkedin</a
             >
           </p>
           <p>
-            <a href="https://twitter.com/Sanket46171296"
+            <a href="https://twitter.com/code_thamizha"
               ><i class="fab fa-twitter"></i> Twitter</a
             >
           </p>
           <p>
-            <a href="https://github.com/sanketbodke"
+            <a href="https://github.com/Thasanthan-codethamizha"
               ><i class="fab fa-github"></i> Github</a
             >
           </p>
+
           <p>
-            <a href="https://codepen.io/sanketbodke"
-              ><i class="fab fa-codepen"></i> Codepen</a
-            >
-          </p>
-          <p>
-            <a href="https://www.instagram.com/imsanketbodke/?hl=en"
+            <a href="https://www.instagram.com/codethamizhathasatech"
               ><i class="fab fa-instagram"></i> Instagram</a
             >
           </p>
         </div>
         <div class="links">
           <h4>Quick links</h4>
-          <p><a href="#">Home</a></p>
-          <p><a href="#">About</a></p>
-          <p><a href="#">Blogs</a></p>
-          <p><a href="#">Contact</a></p>
+          <p><Link to="/">Home</Link></p>
+          <p><Link to="/blogs">Blogs</Link></p>
+          <p><Link to="/support">Support</Link></p>
         </div>
         <div class="details">
-          <h4 class="address">Address</h4>
-          <p>
-            Lorem ipsum dolor sit amet consectetur <br />
-            adipisicing elit. Cupiditate, qui!
-          </p>
+          
           <h4 class="mobile">Mobile</h4>
-          <p><a href="#">+9112233445</a></p>
+          <p><a href="#">+94723190180</a></p>
           <h4 class="mail">Email</h4>
-          <p><a href="#">abcdef@gmail.com</a></p>
+          <p><a href="#">sivakumarthasanthan@gmail.com</a></p>
         </div>
       </div>
       <footer>

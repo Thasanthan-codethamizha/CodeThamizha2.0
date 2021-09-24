@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import Apppromo from '../components/elements/Apppromo';
 
 import Eventsection from '../components/elements/Eventsection';
 import Hoverbutton1 from '../components/elements/hoverbutton1';
@@ -22,7 +23,12 @@ function Home() {
         <div className="textcontainer">
           <h1>Community with Smartest People <div className="ctn1">Code Thamizha</div> </h1>
           <br/>
-          <Hoverbutton1 text="Explore Now" url="#community" color=""/>
+          <div className="homecard-btn">
+          <a class="news-app-promo-subsection--link news-app-promo-subsection--playstore" href="#" target="_parent" >
+                <img class="news-app-promo__play-store" src="//news.files.bbci.co.uk/include/newsspec/19854/assets/app-project-assets/google_play_store.svg" width="161" height="auto" border="0" style={{backgroundColor:"#256ce1",borderRadius:'1rem'}}/>
+            </a>
+          <Hoverbutton1 className="explorenow-btn" text="Explore Now" url="/blogs" color=""/>
+          </div>
         </div>
         <div className="imagecontainer">
           <center>
@@ -31,6 +37,8 @@ function Home() {
 
         </div>
       </div>
+        <br/>
+      <Apppromo/>
 
       <div id="events" class="events">
         <br/>

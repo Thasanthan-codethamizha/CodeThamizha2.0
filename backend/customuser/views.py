@@ -17,6 +17,7 @@ def user_view(request):
     users = User.objects.all()
     serializer = UserSerializer(users, many=True)
     return JsonResponse(serializer.data, safe=False)
+    
 
 
 @api_view(['GET'])
@@ -97,18 +98,15 @@ def follow_create(request):
 @api_view(['GET', 'DELETE'])
 @permission_classes([IsAuthenticated])
 @authentication_classes([SessionAuthentication, TokenAuthentication, ])
-def follow_detail_edit(request, following):
-
+def follow_detail_edit(request, fl):
+    print(fl)
     try:
-        if pk == request.user.username:
-            follow = Follow.objects.all().get(
-                following__username=following, follower=request.user)
-        else:
-            return HttpResponse(status=status.HTTP_404_NOT_FOUND)
-    except User.DoesNotExist:
+        follow = Follow.objects.all().get(
+            following__username=fl, follower__username=request.user.username)
+    except Follow.DoesNotExist:
         return HttpResponse(status=status.HTTP_404_NOT_FOUND)
     if request.method == 'GET':
-        serializer = UserSerializer(follow, many=True)
+        serializer = UserSerializer(follow, many=False)
         return JsonResponse(serializer.data, safe=False)
     elif request.method == 'DELETE':
         follow.delete()

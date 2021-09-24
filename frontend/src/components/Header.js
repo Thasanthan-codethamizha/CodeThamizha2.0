@@ -28,20 +28,21 @@ function Header() {
             <NavLink to='/'>
           </NavLink>
           <Nav>
-            <NavMenu className="navmenu"> 
+            <NavMenu className="navmenu" style={{fontSize:18}}> 
               <NavLink to='/' activeStyle>
                 Home
               </NavLink>
               <NavLink to='/blogs' activeStyle>
                 Explore
               </NavLink>
-              <NavLink to='/community' activeStyle>
-                Community
-              </NavLink>
-              {!token['mytoken']?<NavLink to='/sign-up' activeStyle>Sign Up</NavLink>:null}
+              
+              {!token['mytoken']?<NavLink to='/sign-up' activeStyle>Sign Up</NavLink>:<NavLink to='/community' activeStyle>Community</NavLink>}
               
               {/* Second Nav */}
               {/* <NavBtnLink to='/sign-in'>Sign In</NavBtnLink> */}
+              <NavLink to='/support' activeStyle>
+                Contact-us
+              </NavLink>
             </NavMenu>
           </Nav>
           <NavBtn>

@@ -9,16 +9,31 @@ from django.views.decorators.csrf import csrf_exempt
 from rest_framework.authentication import TokenAuthentication, SessionAuthentication
 from rest_framework.response import Response
 from rest_framework import status
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger,InvalidPage
 # Create your views here.
 from django.contrib.auth import get_user_model
+
 User = get_user_model()
 
 
 @api_view(['GET'])
 def posts_view(request):
     posts = Post.objects.all().filter(aproved=True)
-    serializer = PostSerializer(posts, many=True)
-    return JsonResponse(serializer.data, safe=False)
+    
+    paginator = Paginator(posts, 2)
+    try:
+    	page_number = int(request.GET.get('page',0))
+    except:
+    	page=1
+    try:
+        page_obj= paginator.page(page_number)
+    except (EmptyPage,InvalidPage):
+        return HttpResponse(status=status.HTTP_400_BAD_REQUEST)
+    if int(page_number) < int(posts.count()):
+        serializer = PostSerializer(page_obj, many=True)
+        return JsonResponse(serializer.data, safe=False)
+    else:
+        return HttpResponse(status=status.HTTP_400_BAD_REQUEST)
 
 
 @api_view(['GET'])

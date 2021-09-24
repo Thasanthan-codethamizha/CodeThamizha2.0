@@ -10,7 +10,7 @@ import {
   
 function Hoverbutton1({text,url}) {
     return (
-        <div>
+        <div style={{marginLeft:10,marginTop:15}}>
             <NavBtnLink to={`${url}`}>{text}</NavBtnLink>
             
         </div>

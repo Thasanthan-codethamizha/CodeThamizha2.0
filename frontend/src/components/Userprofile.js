@@ -9,13 +9,14 @@ import './profile.css'
 import Loadingscreen from '../pages/Loadingscreen'
 
 function Userprofile(props) {
+    const history = useHistory()
     const [token,setToken,removeToken]=useCookies(['mytoken'])
     const [followers,setFollowers]=useState([])
     const [followings,setFollowings]=useState([])
     const [user,setUser]=useState('')
     const [followingstatus,setFollowingstatus]=useState(false)
     const [username,setUsername]=useState(false)
-    const [currentuserfollowing,setCurrentuserfollowing]=useState([])
+    const [followbtn,setFollowbtn]=useState(true)
     const [currentuser,setCurrentuser]=useState([])
     const [Loading,setLoading]=useState(true)
     const getFollowers=(username)=>{
@@ -39,20 +40,36 @@ function Userprofile(props) {
     }
 
     const followUser=()=>{
-      
+      let follower =currentuser.id
+      let following =user.id
+      APIService.FollowUser(token,{following,follower})
+      .then(resp=>{
+        console.log(resp)
 
-    
+        history.go(0)
+      })
+      .catch(error=>console.log(error))
     }
-
+    const unfollowUser=()=>{
+      console.log(username)
+        APIService.UnFollowUser(token,username)
+        .then(resp=>{
+          console.log(resp)
+          history.go(0)
+        })
+        .catch(error=>{
+          console.log(error)
+          history.go(0)
+        })
+    }
 
     useEffect(()=>{
 
       APIService.ProfileView(token)
       .then(resp=>{setCurrentuser(resp) } )
       .catch(error=>console.log(error))
-
+      
     },[])
-  
     useEffect(()=>{
       setUsername(props.match.params.username)
       
@@ -66,63 +83,64 @@ function Userprofile(props) {
 
       getFollowers(username)
       getFollowing(username)
-
+     
+      
 
     },[username])
+  
+    useEffect(()=>{
+      if(!Loading){
+        console.log("hello")
+        followers.map(item=>{
+          console.log(item.follower)
+          console.log(currentuser.id)
+          console.log(item)
+          if(item.follower===currentuser.id){
+            setFollowbtn(false)
+            console.log("you following him")
+          }else{
+           
+          }
+
+        })
+      }
+    })
+   
     return (
         <div className="profile">
           {Loading? <Loadingscreen/>:(<>
             <div class="wrapper">
   <div class="profile-card js-profile-card">
     <div class="profile-card__img">
-      <img src={`http://127.0.0.1:8000${user.profile_pic}`} alt="profile card"/>
+      <img src={`http://www.codethamizha.com${user.profile_pic}`} alt="profile card"/>
     </div>
 
     <div class="profile-card__cnt js-profile-cnt">
       <div class="profile-card__name">{user.full_name}</div>
       <div class="profile-card__txt">{user.user_type} of <strong>Code Thamizha</strong></div>
       <div class="profile-card-loc">
-        <span class="profile-card-loc__txt">
+        <span class="profile-card-loc__txt">  
           {user.username}
         </span>
       </div>
             
-      {
-        followers.length>0 ? (
-          <>
-          {
-
-              followers.map(item=>{
-                console.log(item.follower)
-                console.log(currentuser.id)
-                if(item.follower===currentuser.id){
-                  console.log("you following him")
-                  return(
-                    <Button style={{borderRadius:"10px",backgroundColor:"red",width:"30%",color:"white"}}  className="btn btn-danger" data-bs-toggle="tooltip" data-bs-placement="top" title="Logout">UnFollow</Button>
-                  )
-                }
-                else{
-                  console.log("you not following him")
-                  return(
-                    <Button style={{borderRadius:"10px",backgroundColor:"#2468dd",width:"30%",color:"white"}}  className="btn btn-danger" data-bs-toggle="tooltip" data-bs-placement="top" title="Logout">Follow</Button>
-                  )
-                }
-
-              })
-
-              }
-          </>
-        ):
-        (
-          <>
-          {console.log("you nots following him")}
+     
+ 
+          
+      {followbtn?(
+                    <>
+          
+                    {
+                    console.log("you nots following him")
+                    }
+                            
+                    <Button style={{borderRadius:"10px",backgroundColor:"#2468dd",width:"170px",color:"white"}}  className="btn btn-danger" data-bs-toggle="tooltip" data-bs-placement="top" title="Logout" onClick={()=>followUser()}>Follow</Button>
+                    </>
+                  ):(
+                    <Button style={{borderRadius:"10px",backgroundColor:"red",width:"170px",color:"white"}}  className="btn btn-danger" data-bs-toggle="tooltip" data-bs-placement="top" title="Logout"onClick={()=>unfollowUser()}>UnFollow</Button>
                   
-          <Button style={{borderRadius:"10px",backgroundColor:"#2468dd",width:"30%",color:"white"}}  className="btn btn-danger" data-bs-toggle="tooltip" data-bs-placement="top" title="Logout">Follow</Button>
-          </>
-        )
-      }
-
-      
+                  )}
+       
 
       <div class="profile-card-inf">
         <div class="profile-card-inf__item">

@@ -11,7 +11,7 @@ export const SidebarData = [
     cName: 'nav-text'
   },
   {
-    title: 'Blogs',
+    title: 'Explore',
     path: '/blogs',
     icon: <IoIcons.IoIosPaper />,
     cName: 'nav-text'
@@ -20,6 +20,12 @@ export const SidebarData = [
     title: 'Community',
     path: '/community',
     icon: <IoIcons.IoMdPeople />,
+    cName: 'nav-text'
+  },
+  {
+    title: 'Register',
+    path: '/sign-up',
+    icon: <IoIcons.IoIosMan />,
     cName: 'nav-text'
   },
   {

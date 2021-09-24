@@ -2,8 +2,7 @@
     display: flex;
     height: 100vh;
     flex-wrap: wrap;
-    height: 100vh;
-    overflow-x: hidden; 
+    overflow: hidden;
     overflow-y: scroll;
 }
 .peoples .profile-card {

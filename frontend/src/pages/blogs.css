@@ -1,3 +1,9 @@
+.blogs{
+    height: 100vh;
+    overflow: hidden;
+    overflow-y: scroll;
+}
+
 
 .blog-item img {
     display: block;

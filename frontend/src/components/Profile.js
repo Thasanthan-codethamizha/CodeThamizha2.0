@@ -16,7 +16,7 @@ function Profile() {
     const [Loading,setLoading]=useState(true)
     
     let history =useHistory()
-
+    
 
     const logoutBtn=()=>{
         removeToken(['mytoken'])
@@ -128,11 +128,12 @@ function Profile() {
 
 
       
-
       <div class="profile-card-ctr">
         <button class="profile-card__button button--blue js-message-btn" onClick={()=>{setEditStatus(!editstatus)}}>Edit</button>
       </div>
-      <Button style={{borderRadius:"10px"}} onClick={logoutBtn} className="btn btn-danger" data-bs-toggle="tooltip" data-bs-placement="top" title="Logout">
+
+      <br/><br/>
+      <Button style={{borderRadius:"10px"}} onClick={()=>logoutBtn()} className="btn btn-danger" data-bs-toggle="tooltip" data-bs-placement="top" title="Logout">
                         Logout
             </Button>
     </div>

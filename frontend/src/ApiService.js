@@ -59,14 +59,26 @@ export default class APIService {
             })
             .then(resp=>resp.json())
     }
-    static FollowUser(body,token){
-        return fetch(`${BASE_URL}/data/users/`,{
+    static FollowUser(token,body){
+        return fetch(`${BASE_URL}/data/users/follow/create/`,{
             method:'POST',
             headers:{
                 'Content-Type':'application/json',
-                'Authorization':`Token ${token}`
+                'Authorization':`Token ${token['mytoken']}`
               },
             body:JSON.stringify(body)
+        }).then(resp=>resp.json())
+    }
+
+    static UnFollowUser(token,username){
+        console.log(username)
+        console.log(token['mytoken'])
+        return fetch(`${BASE_URL}/data/users/follow/edit/${username}`,{
+            method:'DELETE',
+            headers:{
+                'Content-Type':'application/json',
+                'Authorization':`Token ${token['mytoken']}`
+              },
         }).then(resp=>resp.json())
     }
 
@@ -103,8 +115,8 @@ export default class APIService {
             .then(resp=>resp.json())
     }
 
-    static AllPostsView(){
-        return fetch(`${BASE_URL}/data/posts/`,{
+    static AllPostsView(page){
+        return fetch(`${BASE_URL}/data/posts?page=${page}`,{
             'method':'GET',
             headers:{
                 'Content-Type':'application/json',
@@ -129,6 +141,16 @@ export default class APIService {
             }
             })
             .then(resp=>resp.json())
+    }
+    static CreateCustomerQuery(body){
+        return fetch(`${BASE_URL}/data/events/customerquery/`,{
+            method:'POST',
+            headers:{
+                'Content-Type':'application/json',
+              },
+
+            body:JSON.stringify(body)
+        }).then(resp=>resp.json())
     }
 
 }

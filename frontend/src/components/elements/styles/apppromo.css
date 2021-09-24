@@ -1,0 +1,85 @@
+.news-app-promo {
+    box-sizing: border-box;
+    background-color: rgb(8, 19, 53);
+    padding: 0.5em;
+    padding-top: 3rem;
+    margin-top: 0em;
+    width:'100%';
+  }
+  
+  .news-app-promo__section {
+    display: inline-block;
+    margin: 0 0;
+    position: relative;
+    width: 100%;
+    text-align: center;
+    margin-top: 8px;
+  }
+  
+  .news-app-promo-text {
+    color: #fff;
+    font-family: helvetica;
+    
+    border-right: 0.25em solid #fff;
+    border-left: 0.25em solid #fff;
+    padding: 0 1em;
+    width: 50%;
+    margin: 1em auto;
+    display: block;
+  }
+  @media screen and (max-width: 768px) {
+    .news-app-promo-text {
+        width: 100%;
+    }
+  }
+  .news-app-promo-subsection .news-app-promo__bbc-logo{
+      border-radius: 2rem;
+  }
+  .news-app-promo-text__tagline {
+    font-size: 1.09em;
+  }
+  
+  .news-app-promo-text__download {
+    font-size: 2.25em;
+    font-weight: 600;
+  }
+  
+  .news-app-promo-buttons {
+    margin: 0 auto;
+    max-width: 35%;
+    display: block;
+  }
+  
+  .news-app-promo-buttons__buttons {
+    display: block;
+  }
+  
+  .news-app-promo-buttons__logo {
+    display: inline-block;
+  }
+  
+  .news-app-promo-subsection {
+    display: inline-block;
+    margin: 0 auto;
+    margin-bottom: 25px;
+    margin-right: 10px;
+  }
+  
+  .news-app-promo__bbc-logo {
+    display: inline-block;
+    width: 106px;
+    margin-bottom: 8px;
+  }
+  
+  .news-app-promo__play-store,
+  .news-app-promo__app-store {
+    display: block;
+    width: 161px;
+    height: auto;
+    margin-bottom: 8px;
+  }
+  
+  .news-app-promo-subsection--link {
+    text-decoration: none;
+    border: 0;
+  }

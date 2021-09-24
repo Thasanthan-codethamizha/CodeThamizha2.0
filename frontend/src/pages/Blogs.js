@@ -7,9 +7,21 @@ function Blogs() {
   const[blogs, setBlogs] =useState([])
   const [searchTerm, setSearchTerm] = useState('');
   const [Loading, setLoading] = useState(true);
+  const [page, setPage] = useState(1);
+
+  const scrollToEnd= (event) => {
+    const target = event.target;
+    if(target.scrollHeight - target.scrollTop === target.clientHeight){
+      console.log('scroll to end')
+      setPage(page+1)
+    }
+  }
+ 
+  
+
   useEffect(()=>{
-    APIService.AllPostsView().then(res=>{
-      setBlogs(res)
+    APIService.AllPostsView(page).then(res=>{
+      setBlogs([...blogs,...res])
     }) 
     .catch(err=>{
       console.log(err)
@@ -17,10 +29,11 @@ function Blogs() {
     .finally(() => {
       setLoading(false)
   })
-  },[])
+  console.log(page)
+  },[page])
   return (
 
-   <div className="blogs">
+   <div className="blogs" onScroll={scrollToEnd}>
      {Loading ? <Loadingscreen/> :(
        <>
      <center>
