@@ -119,8 +119,8 @@ function Userprofile(props) {
       <div class="profile-card__name">{user.full_name}</div>
       <div class="profile-card__txt">{user.user_type} of <strong>Code Thamizha</strong></div>
       <div class="profile-card-loc">
-        <span class="profile-card-loc__txt">  
-          {user.username}
+        <span class="profile-card-loc__txt" style={{marginTop:10,marginBottom:10}}>  
+          {user.bio_note}
         </span>
       </div>
             

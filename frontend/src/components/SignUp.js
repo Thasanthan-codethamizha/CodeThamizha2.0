@@ -17,7 +17,7 @@ import Container from '@material-ui/core/Container';
 
 import {LinkContainer} from 'react-router-bootstrap'
 import APIService from '../ApiService';
-
+import swal from 'sweetalert';
 
 const useStyles = makeStyles((theme) => ({
     paper: {
@@ -43,7 +43,6 @@ function SignUp() {
     const [username,setUsername]=useState('')
     const [password,setPassword]=useState('')
     const [email,setEmail]=useState('')
-    const [phone_number,setPhone_number] =useState('')
     const [full_name,setFull_name]=useState('')
     const [termsagree,setTermsagree]=useState(false)
 
@@ -53,10 +52,17 @@ function SignUp() {
 
     const registerBtn=()=>{
       if(termsagree==true){
-      APIService.RegisterUser({username,password,email,full_name,phone_number})
+      APIService.RegisterUser({username,password,email,full_name})
       .then(resp => {
-        console.log(resp)
-        history.push('/signin')
+        swal({
+          title: "Profile Updated!",
+          text: "Profile Updated Sucessfully!",
+          icon: "success",
+          button: "done!",
+        }).then((value) => {
+          history.push('/signin')
+        });
+        
       })
       .catch(error => console.log(error))
       }
@@ -82,7 +88,7 @@ function SignUp() {
           </h1>
           <form className={classes.form} >
             <Grid container spacing={2}>
-              <Grid item xs={12} sm={6}>
+              <Grid item xs={12} >
                 <TextField
                   autoComplete="uname"
                   name="username"
@@ -95,13 +101,13 @@ function SignUp() {
                   onChange={(e) => setUsername(e.target.value)}
                 />
               </Grid>
-              <Grid item xs={12} sm={6}>
+              <Grid item xs={12} >
                 <TextField
                   variant="outlined"
                   required
                   fullWidth
                   id="yourName"
-                  label="Your Name"
+                  label="Full Name"
                   name="yourName"
                   autoComplete="yourName"
                   onChange={(e) => setFull_name(e.target.value)}
@@ -119,18 +125,7 @@ function SignUp() {
                   onChange={(e) => setEmail(e.target.value)}
                 />
               </Grid>
-              <Grid item xs={12}>
-                <TextField
-                  variant="outlined"
-                  required
-                  fullWidth
-                  id="phonenumber"
-                  label="Phone Number"
-                  name="phonenumber"
-                  autoComplete="phonenumber"
-                  onChange={(e) => setPhone_number(e.target.value)}
-                />
-              </Grid>
+              
               <Grid item xs={12}>
                 <TextField
                   variant="outlined"
@@ -147,11 +142,11 @@ function SignUp() {
               <Grid item xs={12}>
                 <FormControlLabel
                   control={<Checkbox value="allowExtraEmails" color="primary" />}
-                  label="I want to receive inspiration, marketing promotions and updates via email."
+                  label="I agree to terms"
                   onChange={(e) => {
                     setTermsagree(e.target.checked)
                     if(e.target.checked==true){
-                    alert("Terms")
+                    alert("https://www.codethamizha.com/privacy.html \n \n I am Accepting Terms and Conditions")
                     }
                   }}
                 />

@@ -36,12 +36,12 @@ function Header() {
                 Explore
               </NavLink>
               
-              {!token['mytoken']?<NavLink to='/sign-up' activeStyle>Sign Up</NavLink>:<NavLink to='/community' activeStyle>Community</NavLink>}
+              {!token['mytoken']?<NavLink to='/sign-up' activeStyle>Register</NavLink>:<NavLink to='/community' activeStyle>Community</NavLink>}
               
               {/* Second Nav */}
               {/* <NavBtnLink to='/sign-in'>Sign In</NavBtnLink> */}
               <NavLink to='/support' activeStyle>
-                Contact-us
+                Contact
               </NavLink>
             </NavMenu>
           </Nav>

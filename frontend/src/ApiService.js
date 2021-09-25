@@ -23,7 +23,7 @@ export default class APIService {
     }
     static UpdateUser(token,body,username){
         return fetch(`${BASE_URL}/data/users/${username}/edit/`,{
-            method:'POST',
+            method:'PUT',
             headers:{
                 'Content-Type':'application/json',
                 'Authorization':`Token ${token['mytoken']}`
@@ -71,8 +71,6 @@ export default class APIService {
     }
 
     static UnFollowUser(token,username){
-        console.log(username)
-        console.log(token['mytoken'])
         return fetch(`${BASE_URL}/data/users/follow/edit/${username}`,{
             method:'DELETE',
             headers:{

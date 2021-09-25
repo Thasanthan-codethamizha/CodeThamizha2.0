@@ -24,7 +24,7 @@ function Home() {
           <h1>Community with Smartest People <div className="ctn1">Code Thamizha</div> </h1>
           <br/>
           <div className="homecard-btn">
-          <a class="news-app-promo-subsection--link news-app-promo-subsection--playstore" href="#" target="_parent" >
+          <a class="news-app-promo-subsection--link news-app-promo-subsection--playstore" href="https://play.google.com/store/apps/details?id=codethamizha.codethamizha" target="_parent" >
                 <img class="news-app-promo__play-store" src="//news.files.bbci.co.uk/include/newsspec/19854/assets/app-project-assets/google_play_store.svg" width="161" height="auto" border="0" style={{backgroundColor:"#256ce1",borderRadius:'1rem'}}/>
             </a>
           <Hoverbutton1 className="explorenow-btn" text="Explore Now" url="/blogs" color=""/>

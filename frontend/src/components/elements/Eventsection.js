@@ -38,7 +38,6 @@ useEffect(() => {
     APIService.AllEventsView()
     .then((res) => {
       setEvents(res)
-      console.log(res);
     })
     .catch((err) => {
       console.log(err);
